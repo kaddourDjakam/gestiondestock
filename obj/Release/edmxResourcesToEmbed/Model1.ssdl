@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="gestion_stockModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="achat">
+    <Key>
+      <PropertyRef Name="id_achat" />
+    </Key>
+    <Property Name="id_achat" Type="int" Nullable="false" />
+    <Property Name="date_achat" Type="datetime" Nullable="false" />
+    <Property Name="qte_achat" Type="int" Nullable="false" />
+    <Property Name="id_produit" Type="int" Nullable="false" />
+    <Property Name="id_fornisuer" Type="int" Nullable="false" />
+    <Property Name="id_emp" Type="int" Nullable="false" />
+    <Property Name="note_achat" Type="varchar" MaxLength="50" />
+    <Property Name="date_fin" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="id_client" />
+    </Key>
+    <Property Name="id_client" Type="int" Nullable="false" />
+    <Property Name="nom_client" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="adress_client" Type="ntext" Nullable="false" />
+    <Property Name="tele_client" Type="varchar(max)" Nullable="false" />
+    <Property Name="note_client" Type="nchar" MaxLength="10" />
+    <Property Name="image" Type="image" />
+  </EntityType>
+  <EntityType Name="emplyee">
+    <Key>
+      <PropertyRef Name="id_emp" />
+    </Key>
+    <Property Name="id_emp" Type="int" Nullable="false" />
+    <Property Name="image_emp" Type="image" Nullable="false" />
+    <Property Name="login_emp" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password_emp" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nom" Type="varchar(max)" Nullable="false" />
+    <Property Name="prenom" Type="varchar(max)" Nullable="false" />
+    <Property Name="Ntele" Type="int" Nullable="false" />
+    <Property Name="type_emp" Type="varchar(max)" Nullable="false" />
+    <Property Name="note" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="fornisuer">
+    <Key>
+      <PropertyRef Name="id_fornisuer" />
+    </Key>
+    <Property Name="id_fornisuer" Type="int" Nullable="false" />
+    <Property Name="nom_fourniseur" Type="varchar(max)" Nullable="false" />
+    <Property Name="address_forniseur" Type="ntext" Nullable="false" />
+    <Property Name="tele_forniseur" Type="varchar(max)" Nullable="false" />
+    <Property Name="note_forniseur" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="image" Type="image" Nullable="false" />
+  </EntityType>
+  <EntityType Name="produit">
+    <Key>
+      <PropertyRef Name="id_produit" />
+    </Key>
+    <Property Name="id_produit" Type="int" Nullable="false" />
+    <Property Name="nom_produit" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="prix_unitare_prod" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="type_produit" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="prix_vent" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="note" Type="nchar" MaxLength="10" />
+    <Property Name="code_bare" Type="varchar" MaxLength="50" />
+    <Property Name="image" Type="image" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="vente">
+    <Key>
+      <PropertyRef Name="id_vente" />
+    </Key>
+    <Property Name="id_vente" Type="int" Nullable="false" />
+    <Property Name="date_vente" Type="date" Nullable="false" />
+    <Property Name="qentity_vente" Type="int" Nullable="false" />
+    <Property Name="prix_unitare_achat" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="prix_vente" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="mouvement" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_produit" Type="int" Nullable="false" />
+    <Property Name="id_client" Type="int" Nullable="false" />
+    <Property Name="id_emp" Type="int" Nullable="false" />
+    <Property Name="note_vente" Type="nchar" MaxLength="10" />
+    <Property Name="nom_prod" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_achat_emplyee">
+    <End Role="emplyee" Type="Self.emplyee" Multiplicity="1" />
+    <End Role="achat" Type="Self.achat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="emplyee">
+        <PropertyRef Name="id_emp" />
+      </Principal>
+      <Dependent Role="achat">
+        <PropertyRef Name="id_emp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_achat_fornisuer">
+    <End Role="fornisuer" Type="Self.fornisuer" Multiplicity="1" />
+    <End Role="achat" Type="Self.achat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fornisuer">
+        <PropertyRef Name="id_fornisuer" />
+      </Principal>
+      <Dependent Role="achat">
+        <PropertyRef Name="id_fornisuer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_achat_produit">
+    <End Role="produit" Type="Self.produit" Multiplicity="1" />
+    <End Role="achat" Type="Self.achat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produit">
+        <PropertyRef Name="id_produit" />
+      </Principal>
+      <Dependent Role="achat">
+        <PropertyRef Name="id_produit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_vente_client">
+    <End Role="client" Type="Self.client" Multiplicity="1" />
+    <End Role="vente" Type="Self.vente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="id_client" />
+      </Principal>
+      <Dependent Role="vente">
+        <PropertyRef Name="id_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_vente_emplyee">
+    <End Role="emplyee" Type="Self.emplyee" Multiplicity="1" />
+    <End Role="vente" Type="Self.vente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="emplyee">
+        <PropertyRef Name="id_emp" />
+      </Principal>
+      <Dependent Role="vente">
+        <PropertyRef Name="id_emp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_vente_produit">
+    <End Role="produit" Type="Self.produit" Multiplicity="1" />
+    <End Role="vente" Type="Self.vente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produit">
+        <PropertyRef Name="id_produit" />
+      </Principal>
+      <Dependent Role="vente">
+        <PropertyRef Name="id_produit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="gestion_stockModelStoreContainer">
+    <EntitySet Name="achat" EntityType="Self.achat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="emplyee" EntityType="Self.emplyee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fornisuer" EntityType="Self.fornisuer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="produit" EntityType="Self.produit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vente" EntityType="Self.vente" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_achat_emplyee" Association="Self.FK_achat_emplyee">
+      <End Role="emplyee" EntitySet="emplyee" />
+      <End Role="achat" EntitySet="achat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_achat_fornisuer" Association="Self.FK_achat_fornisuer">
+      <End Role="fornisuer" EntitySet="fornisuer" />
+      <End Role="achat" EntitySet="achat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_achat_produit" Association="Self.FK_achat_produit">
+      <End Role="produit" EntitySet="produit" />
+      <End Role="achat" EntitySet="achat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_vente_client" Association="Self.FK_vente_client">
+      <End Role="client" EntitySet="client" />
+      <End Role="vente" EntitySet="vente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_vente_emplyee" Association="Self.FK_vente_emplyee">
+      <End Role="emplyee" EntitySet="emplyee" />
+      <End Role="vente" EntitySet="vente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_vente_produit" Association="Self.FK_vente_produit">
+      <End Role="produit" EntitySet="produit" />
+      <End Role="vente" EntitySet="vente" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

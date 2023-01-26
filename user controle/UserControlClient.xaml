@@ -1,0 +1,183 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:appswindows"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             x:Class="appswindows.UserControlCustomers"
+             mc:Ignorable="d" VerticalContentAlignment="Stretch"
+             VerticalAlignment="Stretch" d:DesignWidth="1107.544" Height="619">
+    <Grid Margin="10,10,-18,10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="190*"/>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="170*"/>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="233*"/>
+            <ColumnDefinition Width="97*"/>
+            <ColumnDefinition Width="27*"/>
+            <ColumnDefinition Width="264*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="98"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="490" Margin="1,-2,-1,0" VerticalAlignment="Top" Width="388"  Background="White" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3">
+            <Border.BorderBrush>
+                <ImageBrush/>
+            </Border.BorderBrush>
+            <Grid Margin="-1,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="101*"/>
+                    <ColumnDefinition Width="287*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border BorderThickness="1" HorizontalAlignment="Left" Height="488" VerticalAlignment="Top" Width="388" Background="White" Loaded="Border_Loaded" Grid.ColumnSpan="2">
+                    <Border.BorderBrush>
+                        <ImageBrush/>
+                    </Border.BorderBrush>
+                    <Grid Margin="28,-1,-1,-1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="165*"/>
+                            <ColumnDefinition Width="134*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <materialDesign:PackIcon x:Name="usericon" Kind="Account" Width="25" Height="29" Margin="69,221,0,0" RenderTransformOrigin="0.492,2.216" Opacity="0.48"/>
+                        <materialDesign:PackIcon x:Name="adressicon" Kind="AddressMarker"  Width="28" Height="27" Margin="67,326,0,0" RenderTransformOrigin="0.342,2.474" Opacity="0.625" HorizontalAlignment="Left">
+                            <materialDesign:PackIcon.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="0.679"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </materialDesign:PackIcon.RenderTransform>
+                        </materialDesign:PackIcon>
+                        <materialDesign:PackIcon x:Name="phoneicon" Kind="Telephone"  Width="25" Height="29" Margin="69,369,0,0" RenderTransformOrigin="0.342,2.474" Opacity="0.63"/>
+                        <Button x:Name="ajouter" Content="Ajouter" Margin="59,446,10,0" Grid.Column="1" Click="ajouter_Click" VerticalAlignment="Top"/>
+                        <Button x:Name="modifier" Content="Modifier" Margin="59,446,10,10" Background="#FF43A047" Grid.Column="1" Click="modifier_Click" Visibility="Hidden"/>
+                        <TextBox x:Name="nime" materialDesign:HintAssist.Hint="Nom"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="94,202,57,238" Grid.ColumnSpan="2" />
+                        <Grid Grid.ColumnSpan="2" Margin="99,0,127,284">
+                            <Border CornerRadius="80"  Margin="0,10,-14,57">
+                                <Border.Background>
+                                    <ImageBrush x:Name="clinetph" ImageSource="/appswindows;component/Img/profile.png" />
+                                </Border.Background>
+                            </Border>
+                        </Grid>
+                        <Button x:Name="ajouterph" Content="delete" Margin="10,111,115,340" Grid.Column="1" Click="ajouterphot" Height="Auto">
+                            <Button.Foreground>
+                                <ImageBrush/>
+                            </Button.Foreground>
+                            <Button.BorderBrush>
+                                <ImageBrush/>
+                            </Button.BorderBrush>
+                            <Button.Background>
+                                <ImageBrush ImageSource="/appswindows;component/Img/plus.png"/>
+                            </Button.Background>
+                        </Button>
+                        <materialDesign:PackIcon Kind="IdCard"  Width="25" Height="29" Margin="68,186,0,0" RenderTransformOrigin="0.492,2.216" Opacity="0.48"/>
+                        <TextBox IsEnabled="False" x:Name="id" materialDesign:HintAssist.Hint="id" Margin="95,184,144,279" Grid.ColumnSpan="2"/>
+                        <Image x:Name="warning" Source="/appswindows;component/icon/warning.png" Margin="97,311,23,162" Grid.Column="1" Visibility="Hidden"/>
+                        <TextBox x:Name="adress" materialDesign:HintAssist.Hint="Aderass"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="95,304,56,136" Grid.ColumnSpan="2" />
+                        <TextBox x:Name="telephone" materialDesign:HintAssist.Hint="telephone"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="94,352,57,88" Grid.ColumnSpan="2" TextChanged="telephone_TextChanged" />
+                        <TextBox x:Name="prenom" materialDesign:HintAssist.Hint="Prénom"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="94,254,57,186" Grid.ColumnSpan="2" />
+                        <materialDesign:PackIcon x:Name="usericon_Copy" Kind="TextUser" Width="25" Height="29" Margin="69,275,0,0" RenderTransformOrigin="0.492,2.216" Opacity="0.48"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1"  HorizontalAlignment="Center" Height="488" VerticalAlignment="Top" Width="673" Background="White" Grid.RowSpan="2" Loaded="Border_Loaded_1" Grid.ColumnSpan="5">
+            <Border.BorderBrush>
+                <ImageBrush/>
+            </Border.BorderBrush>
+            <Grid Margin="0,0,-1,9">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="48*"/>
+                    <RowDefinition Height="38*"/>
+                    <RowDefinition Height="54*"/>
+                    <RowDefinition Height="337*"/>
+                </Grid.RowDefinitions>
+                <Border Margin="99,8,0,10" Grid.Column="0" Background="#FF3689E5" Width="170" Height="68" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" >
+                    <Grid>
+                        <TextBlock x:Name="countclient" FontSize="30" Foreground="White" Text="--" Opacity="0.51" Height="50" VerticalAlignment="Bottom" Margin="10,0,10,8"/>
+                        <materialDesign:PackIcon  Kind="User" Width="70" Height="48" Margin="100,10,0,0" Foreground="White" RenderTransformOrigin="0.698,0.615" Opacity="0.7"/>
+
+                    </Grid>
+                </Border>
+                <Button x:Name="search" Margin="483,9,0,13" Content="Search" Click="search_Click" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="154"/>
+                <ComboBox x:Name="csearch" materialDesign:HintAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="0,1,453,0" Height="41" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="166">
+                    <ComboBoxItem IsSelected="True">
+                        id client
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        nom client
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        telephone
+                    </ComboBoxItem>
+                </ComboBox>
+                <TextBox x:Name="txtresh"  HorizontalAlignment="Right" Height="32" Margin="0,9,272,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="search" VerticalAlignment="Top" Width="142" BorderBrush="#89000000" Grid.Row="2" TextChanged="txtresh_TextChanged" Grid.ColumnSpan="2"/>
+                <DataGrid x:Name="dataclie"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" AutoGenerateColumns="False" Loaded="dataclie_Loaded"  BorderBrush="#1F322F2F" Background="White" Margin="0,10,10,-10" Grid.Row="3" MouseDoubleClick="dataclie_MouseDoubleClick" SelectionChanged="dataclie_SelectionChanged" Grid.ColumnSpan="2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn  Header="id" Width="45" Binding="{Binding id_client, Mode=OneWay}"/>
+                        <DataGridTemplateColumn Header="image"  Width="80">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border Height="15" Width="15" CornerRadius="20">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="{Binding image, Mode=OneWay}"/>
+                                        </Border.Background>
+                                    </Border>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn  Header="nom" Width="100" Binding="{Binding nom_client, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="adresse" Width="100" Binding="{Binding adress_client, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="telephone" Width="100" Binding="{Binding tele_client, Mode=OneWay}"/>
+                        <DataGridTemplateColumn Header="modifier">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="btnView" Content="modifer" Width="64" Height="20" FontSize="8" Background="#FF8DD28A" Click="btnView_Click">
+                                        <Button.BorderBrush>
+                                            <ImageBrush/>
+                                        </Button.BorderBrush>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="suppremer">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="btnsup" Content="suppremer" Width="68" Height="20" FontSize="8" Background="Red" BorderBrush="Red" Click="btnsup_Click"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Border  Margin="279,8,0,10" Background="#FFEA5118" Width="179" Height="68" Grid.RowSpan="2" HorizontalAlignment="Left" Grid.Column="1">
+                    <Grid Margin="39,0,0,0">
+                        <TextBlock x:Name="suppremeclient" FontSize="30" Foreground="White" Text="--" Opacity="0.51" Height="48" VerticalAlignment="Bottom" Margin="-28,0,0,10"/>
+                        <materialDesign:PackIcon  Kind="Delete"  Margin="61,10,0,0" Foreground="White" RenderTransformOrigin="0.924,0.662" Width="70" Height="48" Opacity="0.7"/>
+                    </Grid>
+                </Border>
+                <Border Margin="468,8,0,11" Background="#FF24CBC3" Width="170" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                    <Grid Margin="0">
+                        <TextBlock x:Name="clineta" FontSize="30" Foreground="White" Text="--" Opacity="0.51" Height="47" VerticalAlignment="Bottom" Margin="10,0,0,10"/>
+                        <materialDesign:PackIcon  Kind="ChartAreaspline" Width="70" Height="48" Margin="100,10,0,0" Foreground="White" RenderTransformOrigin="0.698,0.615"  Opacity="0.7"/>
+                    </Grid>
+                </Border>
+
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

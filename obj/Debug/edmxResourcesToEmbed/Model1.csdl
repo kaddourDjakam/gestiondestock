@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="gestion_stockModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="achats">
+    <Key>
+      <PropertyRef Name="id_achat" />
+    </Key>
+    <Property Name="id_achat" Type="Int32" Nullable="false" />
+    <Property Name="date_achat" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="qte_achat" Type="Int32" Nullable="false" />
+    <Property Name="id_produit" Type="Int32" Nullable="false" />
+    <Property Name="id_fornisuer" Type="Int32" Nullable="false" />
+    <Property Name="id_emp" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="emplyees" Relationship="Self.FK_achat_emplyee" FromRole="achats" ToRole="emplyees" />
+    <NavigationProperty Name="fornisuers" Relationship="Self.FK_achat_fornisuer" FromRole="achats" ToRole="fornisuers" />
+    <NavigationProperty Name="produits" Relationship="Self.FK_achat_produit" FromRole="achats" ToRole="produits" />
+  </EntityType>
+  <EntityType Name="clients">
+    <Key>
+      <PropertyRef Name="id_client" />
+    </Key>
+    <Property Name="id_client" Type="Int32" Nullable="false" />
+    <Property Name="nom_client" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="adress_client" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="tele_client" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ventes" Relationship="Self.FK_vente_client" FromRole="clients" ToRole="ventes" />
+  </EntityType>
+  <EntityType Name="emplyees">
+    <Key>
+      <PropertyRef Name="id_emp" />
+    </Key>
+    <Property Name="id_emp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="image_emp" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="login_emp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password_emp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="prenom" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Ntele" Type="Int32" />
+    <Property Name="type_emp" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="achats" Relationship="Self.FK_achat_emplyee" FromRole="emplyees" ToRole="achats" />
+    <NavigationProperty Name="ventes" Relationship="Self.FK_vente_emplyee" FromRole="emplyees" ToRole="ventes" />
+  </EntityType>
+  <EntityType Name="fornisuers">
+    <Key>
+      <PropertyRef Name="id_fornisuer" />
+    </Key>
+    <Property Name="id_fornisuer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom_fourniseur" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address_forniseur" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tele_forniseur" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="achats" Relationship="Self.FK_achat_fornisuer" FromRole="fornisuers" ToRole="achats" />
+  </EntityType>
+  <EntityType Name="produits">
+    <Key>
+      <PropertyRef Name="id_produit" />
+    </Key>
+    <Property Name="id_produit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom_produit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prix_unitare_prod" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="type_produit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prix_vent" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="code_bare" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="achats" Relationship="Self.FK_achat_produit" FromRole="produits" ToRole="achats" />
+    <NavigationProperty Name="ventes" Relationship="Self.FK_vente_produit" FromRole="produits" ToRole="ventes" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ventes">
+    <Key>
+      <PropertyRef Name="id_vente" />
+    </Key>
+    <Property Name="id_vente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date_vente" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="qentity_vente" Type="Int32" Nullable="false" />
+    <Property Name="prix_unitare_achat" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="prix_vente" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="mouvement" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_produit" Type="Int32" Nullable="false" />
+    <Property Name="id_client" Type="Int32" Nullable="false" />
+    <Property Name="id_emp" Type="Int32" Nullable="false" />
+    <Property Name="nom_prod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="clients" Relationship="Self.FK_vente_client" FromRole="ventes" ToRole="clients" />
+    <NavigationProperty Name="emplyees" Relationship="Self.FK_vente_emplyee" FromRole="ventes" ToRole="emplyees" />
+    <NavigationProperty Name="produits" Relationship="Self.FK_vente_produit" FromRole="ventes" ToRole="produits" />
+  </EntityType>
+  <Association Name="FK_achat_emplyee">
+    <End Role="emplyees" Type="Self.emplyees" Multiplicity="1" />
+    <End Role="achats" Type="Self.achats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="emplyees">
+        <PropertyRef Name="id_emp" />
+      </Principal>
+      <Dependent Role="achats">
+        <PropertyRef Name="id_emp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_achat_fornisuer">
+    <End Role="fornisuers" Type="Self.fornisuers" Multiplicity="1" />
+    <End Role="achats" Type="Self.achats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fornisuers">
+        <PropertyRef Name="id_fornisuer" />
+      </Principal>
+      <Dependent Role="achats">
+        <PropertyRef Name="id_fornisuer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_achat_produit">
+    <End Role="produits" Type="Self.produits" Multiplicity="1" />
+    <End Role="achats" Type="Self.achats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produits">
+        <PropertyRef Name="id_produit" />
+      </Principal>
+      <Dependent Role="achats">
+        <PropertyRef Name="id_produit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_vente_client">
+    <End Role="clients" Type="Self.clients" Multiplicity="1" />
+    <End Role="ventes" Type="Self.ventes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients">
+        <PropertyRef Name="id_client" />
+      </Principal>
+      <Dependent Role="ventes">
+        <PropertyRef Name="id_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_vente_emplyee">
+    <End Role="emplyees" Type="Self.emplyees" Multiplicity="1" />
+    <End Role="ventes" Type="Self.ventes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="emplyees">
+        <PropertyRef Name="id_emp" />
+      </Principal>
+      <Dependent Role="ventes">
+        <PropertyRef Name="id_emp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_vente_produit">
+    <End Role="produits" Type="Self.produits" Multiplicity="1" />
+    <End Role="ventes" Type="Self.ventes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produits">
+        <PropertyRef Name="id_produit" />
+      </Principal>
+      <Dependent Role="ventes">
+        <PropertyRef Name="id_produit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="gestion_stockEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="achats" EntityType="Self.achats" />
+    <EntitySet Name="clients" EntityType="Self.clients" />
+    <EntitySet Name="emplyees" EntityType="Self.emplyees" />
+    <EntitySet Name="fornisuers" EntityType="Self.fornisuers" />
+    <EntitySet Name="produits" EntityType="Self.produits" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="ventes" EntityType="Self.ventes" />
+    <AssociationSet Name="FK_achat_emplyee" Association="Self.FK_achat_emplyee">
+      <End Role="emplyees" EntitySet="emplyees" />
+      <End Role="achats" EntitySet="achats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_achat_fornisuer" Association="Self.FK_achat_fornisuer">
+      <End Role="fornisuers" EntitySet="fornisuers" />
+      <End Role="achats" EntitySet="achats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_achat_produit" Association="Self.FK_achat_produit">
+      <End Role="produits" EntitySet="produits" />
+      <End Role="achats" EntitySet="achats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_vente_client" Association="Self.FK_vente_client">
+      <End Role="clients" EntitySet="clients" />
+      <End Role="ventes" EntitySet="ventes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_vente_emplyee" Association="Self.FK_vente_emplyee">
+      <End Role="emplyees" EntitySet="emplyees" />
+      <End Role="ventes" EntitySet="ventes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_vente_produit" Association="Self.FK_vente_produit">
+      <End Role="produits" EntitySet="produits" />
+      <End Role="ventes" EntitySet="ventes" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(gestion_stockModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(gestion_stockModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

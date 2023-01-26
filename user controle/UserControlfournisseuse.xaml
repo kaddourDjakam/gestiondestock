@@ -1,0 +1,175 @@
+﻿<UserControl x:Class="appswindows.UserControlProviders"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:appswindows"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+              VerticalContentAlignment="Stretch"
+             VerticalAlignment="Stretch" d:DesignWidth="1107.544" Height="619"
+             >
+    <Grid Margin="0,0,-40,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="177*"/>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="170*"/>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="177*"/>
+            <ColumnDefinition Width="32*"/>
+            <ColumnDefinition Width="16*"/>
+            <ColumnDefinition Width="388*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37.549"/>
+            <RowDefinition Height="26.408"/>
+            <RowDefinition Height="448.592"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="1" HorizontalAlignment="Center" Height="506" VerticalAlignment="Top" Width="686" Background="White" Margin="0,10,0,0" Grid.RowSpan="3" Grid.ColumnSpan="8" >
+            <Border.BorderBrush>
+                <ImageBrush/>
+            </Border.BorderBrush>
+            <Grid>
+                <DataGrid x:Name="datafor" ScrollViewer.HorizontalScrollBarVisibility="Disabled" AutoGenerateColumns="False" Loaded="datafor_Loaded" Background="White" Margin="10,160,10,10" SelectionChanged="datafor_SelectionChanged" MouseDoubleClick="datafor_MouseDoubleClick">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="image"  Width="80">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border Height="15" Width="15" CornerRadius="20">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="{Binding image, Mode=OneWay}"/>
+                                        </Border.Background>
+                                    </Border>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn  Header="nom" Width="100" Binding="{Binding nom_fourniseur, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="address" Width="100" Binding="{Binding address_forniseur, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="telephone" Width="100" Binding="{Binding tele_forniseur, Mode=OneWay}"/>
+                        <DataGridTemplateColumn Header="modifier">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="btnView" Content="modifer" Width="64" Height="20" FontSize="8" Background="#FF8DD28A" Click="btnView_Click">
+                                        <Button.BorderBrush>
+                                            <ImageBrush/>
+                                        </Button.BorderBrush>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="suppremer">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="btnsup" Content="suppremer" Width="68" Height="20" FontSize="8" Background="Red" BorderBrush="Red" Click="btnsup_Click"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="search" Content="search" Margin="499,101,0,371" Click="search_Click" HorizontalAlignment="Left" Width="149" />
+                <TextBox x:Name="datasearch" materialDesign:HintAssist.Hint="search"  Margin="0,103,283,369" Height="32" TextChanged="datasearch_TextChanged" HorizontalAlignment="Right" Width="163"/>
+                <ComboBox  x:Name="csearch" materialDesign:HintAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="0,91,466,0" Height="42" VerticalAlignment="Top" HorizontalAlignment="Right" Width="153">
+                    <ComboBoxItem IsSelected="True">
+                        id fornisour
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        nom
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        telephone
+                    </ComboBoxItem>
+
+                </ComboBox>
+                <Border Margin="122,10,0,426" Grid.Column="0" Background="#FF3689E5" Width="170" Height="68" HorizontalAlignment="Left"  >
+                    <Grid Margin="0,10" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="numberfor"  Margin="10,0,0,5" FontSize="30" Foreground="White" Text="--" Opacity="0.51" Height="43" VerticalAlignment="Bottom"/>
+                        <materialDesign:PackIcon  Kind="User"  Margin="100,0,0,0" Foreground="White" RenderTransformOrigin="0.698,0.615" Width="70" Height="48" Opacity="0.7" VerticalAlignment="Bottom"/>
+                    </Grid>
+                </Border>
+                <Border Margin="300,10,0,426" Grid.Column="0" Background="#FFEA5118" Width="170" Height="68" HorizontalAlignment="Left"  >
+                    <Grid Margin="0,10" >
+                        <TextBlock x:Name="suppremerfor" Margin="10,0,0,5" FontSize="30" Foreground="White" Text="--" Opacity="0.51" Height="43" VerticalAlignment="Bottom"/>
+                        <materialDesign:PackIcon  Kind="Delete"  Margin="100,0,0,0" Foreground="White"  Width="70" Height="48" Opacity="0.7" VerticalAlignment="Stretch"/>
+                    </Grid>
+                </Border>
+                <Border Margin="478,10,0,426" Grid.Column="0" Background="#FF24CBC3" Width="170" Height="68" HorizontalAlignment="Left"  >
+                    <Grid Margin="0,10" >
+                        <TextBlock x:Name="prdAF" Margin="10,0,0,5" FontSize="30" Foreground="White" Text="--" Opacity="0.51" Height="43" VerticalAlignment="Bottom"/>
+                        <materialDesign:PackIcon  Kind="ChartAreaspline"  Margin="100,0,0,0" Foreground="White" RenderTransformOrigin="0.698,0.615" Width="70" Height="48" Opacity="0.7"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="506" Margin="0,10,0,0" VerticalAlignment="Top" Width="387" Background="White" Grid.RowSpan="3" Grid.Column="8">
+            <Border.BorderBrush>
+                <ImageBrush/>
+            </Border.BorderBrush>
+            <Grid >
+                <Border BorderThickness="1" HorizontalAlignment="Left" Height="504" VerticalAlignment="Top" Width="385" Background="White" Loaded="Border_Loaded">
+                    <Border.BorderBrush>
+                        <ImageBrush/>
+                    </Border.BorderBrush>
+                    <Grid Margin="0,-1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="165*"/>
+                            <ColumnDefinition Width="134*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <materialDesign:PackIcon x:Name="usericon" Kind="Account" Width="25" Height="29" Margin="69,199,0,0" RenderTransformOrigin="0.492,2.216" Opacity="0.48"/>
+                        <TextBox x:Name="adress" materialDesign:HintAssist.Hint="Location"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="99,275,77,183" Grid.ColumnSpan="2" />
+                        <TextBox x:Name="telephone" materialDesign:HintAssist.Hint="Telephone"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="99,322,77,136" Grid.ColumnSpan="2" TextChanged="telephone_TextChanged" />
+                        <StackPanel Margin="69,338,77,70" Grid.ColumnSpan="2"/>
+                        <materialDesign:PackIcon x:Name="adressicon" Kind="AddressMarker"  Width="Auto" Height="27" Margin="64,293,113,0" RenderTransformOrigin="0.342,2.474" Opacity="0.625" HorizontalAlignment="Stretch">
+                            <materialDesign:PackIcon.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="0.679"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </materialDesign:PackIcon.RenderTransform>
+                        </materialDesign:PackIcon>
+                        <materialDesign:PackIcon x:Name="phoneicon" Kind="Telephone" Width="25" Height="29" Margin="69,339,0,0" RenderTransformOrigin="0.342,2.474" Opacity="0.63"/>
+                        <Button x:Name="ajouter" Content="Add" Margin="59,462,10,0" Grid.Column="1" Click="ajouter_Click" VerticalAlignment="Top"/>
+                        <Button x:Name="modifier" Content="Edite" Margin="59,462,10,10" Background="#FF43A047" Grid.Column="1" Click="modifier_Click" Visibility="Hidden"/>
+                        <TextBox x:Name="nime" materialDesign:HintAssist.Hint="nom"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="99,182,77,276" Grid.ColumnSpan="2" />
+                        <Grid Grid.ColumnSpan="2" Margin="99,0,127,356">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Border CornerRadius="80"  Margin="10,10,0,0">
+                                <Border.Background>
+                                    <ImageBrush x:Name="adpic3" ImageSource="/appswindows;component/Img/profile.png" />
+                                </Border.Background>
+                            </Border>
+                        </Grid>
+                        <Button x:Name="addpic" Content="delete" Margin="10,111,127,359" Grid.Column="1" Click="suppremer_Copy_Click" Height="Auto">
+                            <Button.Foreground>
+                                <ImageBrush/>
+                            </Button.Foreground>
+                            <Button.BorderBrush>
+                                <ImageBrush/>
+                            </Button.BorderBrush>
+                            <Button.Background>
+                                <ImageBrush ImageSource="/appswindows;component/Img/plus.png"/>
+                            </Button.Background>
+                        </Button>
+                        <materialDesign:PackIcon Kind="IdCard"  Width="25" Height="29" Margin="69,153,0,0" RenderTransformOrigin="0.492,2.216" Opacity="0.48"/>
+                        <TextBox IsEnabled="False" x:Name="id" materialDesign:HintAssist.Hint="id" Margin="99,153,0,322"/>
+                        <Image x:Name="warning" Source="/appswindows;component/icon/warning.png" Margin="97,269,50,139" Grid.Column="1" Visibility="Hidden"/>
+                        <TextBox x:Name="prenom" materialDesign:HintAssist.Hint="Prenom"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="99,228,77,230" Grid.ColumnSpan="2" />
+                        <materialDesign:PackIcon x:Name="usericon_Copy" Kind="TextUser" Width="25" Height="29" Margin="69,243,0,0" RenderTransformOrigin="0.492,2.216" Opacity="0.48"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

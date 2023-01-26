@@ -1,0 +1,180 @@
+﻿<UserControl x:Class="appswindows.UserControluser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:appswindows"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             VerticalContentAlignment="Stretch"
+             VerticalAlignment="Stretch" d:DesignWidth="1107.544" Height="619">
+    <Grid Margin="0,0,0,-282" HorizontalAlignment="Left" Width="1152">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="183*"/>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="170*"/>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="210*"/>
+            <ColumnDefinition Width="396*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40.793"/>
+            <RowDefinition Height="20.759"/>
+            <RowDefinition Height="47.241"/>
+            <RowDefinition Height="54.128"/>
+            <RowDefinition Height="295.872"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="1" Margin="6,9,0,-54" Background="White" Grid.ColumnSpan="6" Grid.RowSpan="5" HorizontalAlignment="Left" Width="691" >
+            <Border.BorderBrush>
+                <ImageBrush/>
+            </Border.BorderBrush>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="303"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="search" Margin="545,105,0,166" Content="Search" RenderTransformOrigin="0.462,0.707" Click="search_Click" HorizontalAlignment="Left" Width="130" />
+                <TextBox x:Name="datasearch" materialDesign:HintAssist.Hint="search"  Margin="0,105,356,166" Height="32" BorderBrush="#FF050505" TextChanged="datasearch_TextChanged" HorizontalAlignment="Right" Width="150"/>
+                <ComboBox x:Name="cosearch" materialDesign:HintAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="34,0,537,169" Height="40"  BorderBrush="#FF050505" VerticalAlignment="Bottom">
+                    <ComboBoxItem IsSelected="True">
+                        Nom emplyee
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        prenom
+                    </ComboBoxItem>
+
+                </ComboBox>
+                <DataGrid x:Name="dataemp" ScrollViewer.HorizontalScrollBarVisibility="Disabled" AutoGenerateColumns="False" Loaded="dataemp_Loaded" Background="White" GridLinesVisibility="Horizontal" Margin="0,153,0,-189" SelectionChanged="dataemp_SelectionChanged" MouseDoubleClick="dataemp_MouseDoubleClick" HorizontalAlignment="Left" Width="647">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn  Header="id" Width="" Binding="{Binding id_emp, Mode=OneWay}"/>
+                        <DataGridTemplateColumn Header="image"  Width="80">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border Height="15" Width="15" CornerRadius="20">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="{Binding image_emp, Mode=OneWay}"/>
+                                        </Border.Background>
+                                    </Border>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn  Header="nom" Width="100" Binding="{Binding nom, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="prenom" Width="100" Binding="{Binding prenom, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="telephone" Width="100" Binding="{Binding Ntele, Mode=OneWay}"/>
+                        <DataGridTemplateColumn Header="modifier">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="btnView" Content="modifer" Width="64" Height="20" FontSize="8" Background="#FF8DD28A" Click="btnView_Click">
+                                        <Button.BorderBrush>
+                                            <ImageBrush/>
+                                        </Button.BorderBrush>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="suppremer">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="btnsup" Content="suppremer" Width="68" Height="20" FontSize="8" Background="Red" BorderBrush="Red" Click="btnsup_Click"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Border Margin="133,10,0,225" Grid.Column="0" Background="#FF3689E5" Width="170" Height="68" HorizontalAlignment="Left"  >
+                    <Grid Margin="0,10" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="countemp" Margin="0,0,0,5" FontSize="30" Foreground="White" Text="--" Opacity="0.51" Height="43" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="160"/>
+                        <materialDesign:PackIcon  Kind="User"  Margin="100,0,0,0" Foreground="White" RenderTransformOrigin="0.698,0.615" Width="70" Height="48" Opacity="0.7" VerticalAlignment="Bottom"/>
+                    </Grid>
+                </Border>
+                <Border Margin="318,10,0,225" Background="#FFEA5118" Height="68" HorizontalAlignment="Left" Width="170"  >
+                    <Grid Margin="0,10" >
+                        <TextBlock x:Name="nbrsal" Margin="10,0,0,5" FontSize="30" Foreground="White" Text="--" Opacity="0.51" Height="43" VerticalAlignment="Bottom"/>
+                        <materialDesign:PackIcon  Kind="ChartAreaspline" Margin="100,0,0,0" Foreground="White"  Width="70" Height="48" Opacity="0.7" VerticalAlignment="Stretch"/>
+
+                    </Grid>
+                </Border>
+                <Border Margin="501,10,0,225" Grid.Column="0" Background="#FF24CBC3" Width="170" Height="68" HorizontalAlignment="Left"  >
+                    <Grid Margin="0,10" >
+                        <TextBlock x:Name="salee" Margin="10,0,0,0" FontSize="30" Foreground="White" Text="--" Opacity="0.51" Height="48" VerticalAlignment="Bottom"/>
+                        <materialDesign:PackIcon  Kind="Sale" Margin="100,0,0,0" Foreground="White" RenderTransformOrigin="0.698,0.615" Width="70" Height="48" Opacity="0.7"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="508" Margin="13,10,-5,-54" VerticalAlignment="Top" Width="388"  Background="White" Grid.Column="5" Grid.RowSpan="5">
+            <Border.BorderBrush>
+                <ImageBrush/>
+            </Border.BorderBrush>
+            <Grid Margin="0,0,-1,0">
+                <Border BorderThickness="1" Loaded="Border_Loaded" HorizontalAlignment="Center" Width="387" Height="506" VerticalAlignment="Top">
+                    <Border.BorderBrush>
+                        <ImageBrush/>
+                    </Border.BorderBrush>
+                    <Border.Background>
+                        <ImageBrush/>
+                    </Border.Background>
+                    <Grid Margin="0,-1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <materialDesign:PackIcon Kind="Account"  Width="25" Height="29" Margin="23,264,0,0" RenderTransformOrigin="0.492,2.216" Opacity="0.48"></materialDesign:PackIcon>
+                        <materialDesign:PackIcon Kind="TextUser"  Width="Auto" Height="22" Margin="21,316,334,0" RenderTransformOrigin="0.342,2.474" Opacity="0.625" HorizontalAlignment="Stretch">
+                            <materialDesign:PackIcon.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="0.466"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </materialDesign:PackIcon.RenderTransform>
+                        </materialDesign:PackIcon>
+                        <materialDesign:PackIcon Kind="Telephone"  Width="25" Height="29" Margin="23,358,0,0" RenderTransformOrigin="0.342,2.474" Opacity="0.63"/>
+                        <Button x:Name="ajouter" Content="Add" Margin="286,452,10,22" Click="ajouter_Click"/>
+                        <Button x:Name="modifier" Content="Edite" Margin="286,464,10,10" Background="#FF43A047" Click="modifier_Click" Visibility="Hidden"/>
+                        <TextBox x:Name="nime"  materialDesign:HintAssist.Hint="nom"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="53,250,239,215" />
+                        <Grid Margin="0,0,173,0">
+                            <Border CornerRadius="80" Margin="129,0,-60,366">
+                                <Border.Background>
+                                    <ImageBrush x:Name="picbox" ImageSource="/appswindows;component/Img/profile.png" />
+                                </Border.Background>
+                            </Border>
+                        </Grid>
+                        <Button x:Name="addimge" Content="delete" Margin="236,98,113,356" RenderTransformOrigin="0.368,-0.031" Click="addClick">
+                            <Button.Foreground>
+                                <ImageBrush/>
+                            </Button.Foreground>
+                            <Button.BorderBrush>
+                                <ImageBrush/>
+                            </Button.BorderBrush>
+                            <Button.Background>
+                                <ImageBrush ImageSource="/appswindows;component/Img/plus.png"/>
+                            </Button.Background>
+                        </Button>
+                        <TextBox x:Name="usernime"  materialDesign:HintAssist.Hint="Nom d'utilisateur"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="51,163,183,296" />
+                        <PasswordBox x:Name="password" materialDesign:HintAssist.Hint="******"  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="248,174,10,296"/>
+                        <materialDesign:PackIcon Kind="PersonAdd" Width="25" Height="29" Margin="23,181,0,0" RenderTransformOrigin="0.492,2.216" Opacity="0.48"/>
+                        <materialDesign:PackIcon Kind="Key"  Width="25" Height="29" Margin="218,181,0,0" RenderTransformOrigin="0.492,2.216" Opacity="0.48"/>
+                        <ComboBox x:Name="catigo" materialDesign:HintAssist.Hint="type" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="53,200,181,246">
+                            <ComboBoxItem>À plein temps</ComboBoxItem>
+                            <ComboBoxItem>À temps partiel</ComboBoxItem>
+                            <ComboBoxItem>Décontractée</ComboBoxItem>
+                            <ComboBoxItem>Durée déterminée</ComboBoxItem>
+                            <ComboBoxItem>Les travailleurs de quarts</ComboBoxItem>
+                            <ComboBoxItem>location à la journée</ComboBoxItem>
+                            <ComboBoxItem>Probation</ComboBoxItem>
+                            <ComboBoxItem>Apprentis et stagiaires</ComboBoxItem>
+                        </ComboBox>
+                        <materialDesign:PackIcon Kind="ListStatus" Width="25" Height="29" Margin="23,221,0,0" RenderTransformOrigin="0.492,2.216" Opacity="0.48"/>
+                        <TextBox x:Name="second"  materialDesign:HintAssist.Hint="prenom"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="51,292,183,168" />
+                        <TextBox IsEnabled="False" x:Name="id" materialDesign:HintAssist.Hint="id" Height="29" Margin="51,131,243,346" RenderTransformOrigin="0.188,0.412"/>
+                        <materialDesign:PackIcon Kind="IdentificationCard" Width="Auto" Height="30" Margin="22,131,338,0" RenderTransformOrigin="0.492,2.216" Opacity="0.48" HorizontalAlignment="Stretch"/>
+                        <TextBox x:Name="telephone"  materialDesign:HintAssist.Hint="telephone"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="51,338,185,120" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

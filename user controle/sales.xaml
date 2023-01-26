@@ -1,0 +1,203 @@
+﻿<UserControl x:Class="appswindows.sales"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:appswindows"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+              Height="625.274" Width="1043.999" 
+             VerticalContentAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             
+             >
+    <Grid Margin="0,0,0,103" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="459*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="149*"/>
+            <ColumnDefinition Width="112*"/>
+        </Grid.ColumnDefinitions>
+        <Border BorderThickness="1" HorizontalAlignment="Right" Height="501" VerticalAlignment="Top" Width="562" Background="White" Loaded="Border_Loaded" Margin="0,10,20,0" BorderBrush="#FF131313" Grid.RowSpan="3">
+            <Grid Margin="0,0,-1,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="453*"/>
+                    <RowDefinition Height="37*"/>
+                    <RowDefinition Height="9*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="208*"/>
+                    <ColumnDefinition Width="209*"/>
+                    <ColumnDefinition Width="224*"/>
+                </Grid.ColumnDefinitions>
+                <Border Margin="10,10,9,375" Background="#FFFFC758" Grid.Column="1" Width="170" Height="68">
+                    <Grid Margin="0,0,10,0">
+                        <TextBlock x:Name="pritxt" Text="--" FontSize="30" Foreground="White" Height="48" VerticalAlignment="Bottom" Margin="10,0,-10,10" Opacity="0.7"/>
+                    </Grid>
+                </Border>
+                <Border Margin="10,10,8,375" Background="#FF24CBC3" Width="170" Height="68">
+                    <Grid>
+                        <TextBlock x:Name="number" FontSize="30" Margin="10,0,0,10" Foreground="White" Height="48" VerticalAlignment="Bottom" Opacity="0.7"><Run Text="--"/><LineBreak/><Run/></TextBlock>
+                    </Grid>
+                </Border>
+                <Border Margin="10,10,22,375" Background="#FFF06A51" Grid.Column="2" Width="170" Height="68">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="qte" Text="--" FontSize="30" Foreground="White" Height="48" VerticalAlignment="Bottom" Margin="10,0,0,10" Opacity="0.7"/>
+                    </Grid>
+                </Border>
+                <Border Margin="10,79,156,324" Grid.ColumnSpan="3" BorderBrush="Black">
+                    <Grid Margin="0,0,0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="  Ventes produits" FontFamily="Microsoft YaHei UI" FontSize="18" Height="32" VerticalAlignment="Top" Margin="0,10,0,0"/>
+
+                    </Grid>
+                </Border>
+                <Border Margin="9,129,121,16" Grid.ColumnSpan="3" BorderBrush="Black" OpacityMask="Black" Grid.RowSpan="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="127"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBox IsEnabled="False" x:Name="ids" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,0,312,83" Visibility="Hidden">
+                            <materialDesign:HintAssist.Hint>
+                                <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                                    <materialDesign:PackIcon Kind="Identifier" />
+                                </StackPanel>
+                            </materialDesign:HintAssist.Hint>
+                        </TextBox>
+                        <ComboBox x:Name="qutitiy" materialDesign:HintAssist.Hint="Quantitiy"  MinWidth="72"  Margin="10,87,287,0"  ItemsSource="{Binding LongListToTestComboVirtualization}" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="44" VerticalAlignment="Top" Grid.RowSpan="2">
+                            <ComboBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel />
+                                </ItemsPanelTemplate>
+                            </ComboBox.ItemsPanel>
+
+                        </ComboBox>
+
+                        <TextBox x:Name="maquteity" IsEnabled="False" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="202,87,101,214" Grid.RowSpan="2">
+                            <materialDesign:HintAssist.Hint>
+                                <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                                    <materialDesign:PackIcon Kind="ShoppingBasket" />
+                                    <TextBlock><Run Text="Qauntity"/></TextBlock>
+                                </StackPanel>
+                            </materialDesign:HintAssist.Hint>
+                        </TextBox>
+                        <ComboBox x:Name="produitt" materialDesign:HintAssist.Hint="Produit" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="10,49,287,38" Loaded="produit_Loaded" RenderTransformOrigin="0.497,0.275"/>
+                        <Button x:Name="btnscanner"  Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Margin="279,14,96,83" Height="Auto" BorderBrush="Black" Background="Black" Click="btnscanner_Click" Visibility="Hidden">
+                            <materialDesign:PackIcon Kind="BarcodeScanner" BorderBrush="Black" Background="Black" />
+                        </Button>
+                        <CheckBox x:Name="manual" Content="manual" HorizontalAlignment="Left" Margin="353,107,0,0" VerticalAlignment="Top"  RenderTransformOrigin="0.607,-0.278" Checked="manual_Checked" Unchecked="manual_Unchecked"/>
+                        <ComboBox x:Name="cliemt" materialDesign:HintAssist.Hint="Client" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="10,4,287,170" Loaded="cliemt_Loaded" Height="44" Grid.Row="1">
+                        </ComboBox>
+                        <ComboBox x:Name="movement" materialDesign:HintAssist.Hint="movement" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="10,49,287,127" Height="42" RenderTransformOrigin="0.5,0.533" Grid.Row="1">
+                            <ComboBoxItem IsSelected="True">
+                                vente
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Le crédit
+                            </ComboBoxItem>
+                        </ComboBox>
+                        <CheckBox IsEnabled="False" x:Name="scanner" Content="scanner" HorizontalAlignment="Left" Margin="0,25,0,0" VerticalAlignment="Top" Checked="scanner_Checked" Unchecked="scanner_Unchecked" RenderTransformOrigin="0.524,0.389"/>
+                        <TextBox x:Name="barcod" materialDesign:HintAssist.Hint="Barcod"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="152,0,191,83" Visibility="Hidden" />
+                        <CheckBox x:Name="maachater" IsChecked="True" Content="manual" HorizontalAlignment="Left" Margin="78,26,0,0" VerticalAlignment="Top" Unchecked="maachater_Unchecked" Checked="maachater_Checked"/>
+                    </Grid>
+                </Border>
+                <Button x:Name="ajouter2" Width="Auto"  Grid.Column="2" Margin="63,3,26,2" Grid.ColumnSpan="1" FontSize="9" Height="Auto" Click="ajouter2_Click" Content="Ajouter order" Grid.Row="1"/>
+                <materialDesign:PackIcon  Kind="AddShoppingCart" Width="21" Grid.Column="2" Margin="75,12,0,0" Foreground="White" RenderTransformOrigin="1.05,0.671" Grid.Row="1"/>
+                <materialDesign:PackIcon  Kind="ShoppingCart" Width="46" Margin="112,10,0,0" Foreground="White" RenderTransformOrigin="0.698,0.615" Height="64" Opacity="0.7"/>
+                <materialDesign:PackIcon  Kind="Dollar" Width="44" Margin="135,10,0,0" Foreground="White" RenderTransformOrigin="0.698,0.615" Height="64" Grid.Column="1" Opacity="0.7"/>
+                <materialDesign:PackIcon  Kind="Package" Width="46" Margin="122,10,0,0" Foreground="White" RenderTransformOrigin="0.698,0.615" Height="64" Grid.Column="2" Opacity="0.7"/>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" Margin="595,10,0,0" Background="White" BorderBrush="Black" Grid.RowSpan="3" Height="501" VerticalAlignment="Top" Grid.ColumnSpan="2">
+            <Grid Margin="0,0,-1,0">
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"  x:Name="listview1"  ItemsSource="{Binding }" 
+                      HorizontalAlignment="Left" VerticalAlignment="Top" 
+                      Width="448" Panel.ZIndex="1" Background="Transparent" 
+                      Visibility="Visible" BorderThickness="0"                   
+                      Height="276" MinHeight="0"
+                      HorizontalContentAlignment="Center"                    
+                      Canvas.Left="33" Canvas.Top="127">
+                    <ListView.View>
+                        <GridView >
+                            <GridViewColumn Header="nom" DisplayMemberBinding="{Binding produittt}" Width="100"/>
+                            <GridViewColumn Header="Quantity" DisplayMemberBinding="{Binding Quantity}" Width="120"/>
+                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="100"/>
+                            <GridViewColumn Header="date" DisplayMemberBinding="{Binding date}" Width="100"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <TextBox x:Name="code"  Margin="38,0,0,175" HorizontalAlignment="Left" Width="164" Height="32" VerticalAlignment="Bottom"/>
+                <Button x:Name="codepromo" Margin="217,0,0,175" Height="32" Content="  Code promo" FontSize="9" Background="#FFF06A51" HorizontalAlignment="Left" Width="112" VerticalAlignment="Bottom">
+                    <Button.BorderBrush>
+                        <ImageBrush/>
+                    </Button.BorderBrush>
+                </Button>
+                <Button x:Name="modifier1" Margin="334,0,0,175" Height="32" Content="Modifier" FontSize="9" Background="#FF83CD80" Click="modifier" HorizontalAlignment="Left" Width="104" VerticalAlignment="Bottom">
+                    <Button.BorderBrush>
+                        <ImageBrush/>
+                    </Button.BorderBrush>
+                </Button>
+                <Button x:Name="codepromo_Copy1" Margin="334,455,0,0" Height="32" Content="Valider" FontSize="9" Background="#FF2196F3" Click="validier" HorizontalAlignment="Left" Width="102" VerticalAlignment="Top">
+                    <Button.BorderBrush>
+                        <ImageBrush/>
+                    </Button.BorderBrush>
+                </Button>
+                <Button x:Name="impremer1" Margin="227,455,0,0" Height="32" Content="Impremer" FontSize="9" Background="#FF24CBC3" Click="impremer" HorizontalAlignment="Left" Width="104" VerticalAlignment="Top">
+                    <Button.BorderBrush>
+                        <ImageBrush/>
+                    </Button.BorderBrush>
+                </Button>
+                <materialDesign:PackIcon  Kind="PrinterSettings" Width="23" Margin="229,466,0,0" Foreground="White" RenderTransformOrigin="0.584,-0.123" Height="13"/>
+                <materialDesign:PackIcon  Kind="CheckOutline" Width="23" Margin="334,465,0,0" Foreground="White" RenderTransformOrigin="0.584,-0.123" Height="13"/>
+                <materialDesign:PackIcon  Kind="Edit" Width="23" Margin="334,302,0,0" Foreground="White" RenderTransformOrigin="0.584,-0.123" Height="13"/>
+                <materialDesign:PackIcon  Kind="Tag" Width="18" Margin="217,302,0,0" Foreground="White" RenderTransformOrigin="0.584,-0.123" Height="13"/>
+            </Grid>
+        </Border>
+        <StackPanel Margin="28,363,292,11" Grid.Row="2"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="38,280,0,0" VerticalAlignment="Top" Width="398" Grid.Column="1" Grid.Row="2"/>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="31" Margin="38,314,0,0" VerticalAlignment="Top" Width="356" Grid.Column="1" Grid.Row="2">
+            <Border.BorderBrush>
+                <ImageBrush/>
+            </Border.BorderBrush>
+            <Grid>
+                <TextBlock x:Name="stotal_Copy" Text="  Sous-total" FontSize="14" FontFamily="Yu Gothic UI" FontWeight="Bold" HorizontalAlignment="Left" Width="164" Height="29" VerticalAlignment="Top" />
+                <TextBlock x:Name="stoutt" Text="" Margin="161,0,10,0" FontSize="14" FontFamily="Yu Gothic UI" FontWeight="Bold" TextAlignment="Right" />
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="34" Margin="38,280,0,0" VerticalAlignment="Top" Width="356" Grid.Column="1" Grid.Row="2">
+            <Border.BorderBrush>
+                <ImageBrush/>
+            </Border.BorderBrush>
+            <TextBlock x:Name="total" Text="total panier  " TextAlignment="Right" FontSize="14" FontWeight="Bold" FontFamily="Yu Gothic UI" Margin="0,-1,-1,-1" HorizontalAlignment="Right" Width="93" ></TextBlock>
+        </Border>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="33" Margin="40,345,0,0" VerticalAlignment="Top" Width="353" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.Row="2">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.04"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <Border.BorderBrush>
+                <ImageBrush/>
+            </Border.BorderBrush>
+            <Grid>
+                <TextBlock x:Name="toutt" Text="" Margin="161,0,10,0" FontSize="14" FontFamily="Yu Gothic UI" FontWeight="Bold" TextAlignment="Right" />
+                <TextBlock FontSize="14" FontFamily="Yu Gothic UI" FontWeight="Bold" HorizontalAlignment="Right" Width="161" Text=" Total " Height="31" VerticalAlignment="Center" Margin="0,0,190,0" />
+            </Grid>
+        </Border>
+
+
+    </Grid>
+
+</UserControl>

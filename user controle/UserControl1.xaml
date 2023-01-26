@@ -1,0 +1,160 @@
+﻿<UserControl x:Class="appswindows.UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:appswindows"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" ToolTipClosing="UserControl_ToolTipClosing" ToolTipOpening="UserControl_ToolTipOpening"   VerticalContentAlignment="Stretch"
+             VerticalAlignment="Stretch" d:DesignWidth="1107.544" Height="619">
+    <Grid Margin="0,0,-32,25">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="203*"/>
+            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="172*"/>
+            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="182*"/>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="404*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="27.181"/>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="53.729"/>
+            <RowDefinition Height="361.271"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="508" Margin="8,8,0,0" VerticalAlignment="Top" Width="690" Background="White" Grid.RowSpan="5" Grid.ColumnSpan="6">
+            <Border.BorderBrush>
+                <ImageBrush/>
+            </Border.BorderBrush>
+            <Grid>
+                <Button x:Name="search" Margin="523,105,0,369" Content="Search" Click="search_Click" HorizontalAlignment="Left" Width="142" />
+                <TextBox x:Name="datasearch" materialDesign:HintAssist.Hint="search"  Margin="0,102,285,372" Height="32" RenderTransformOrigin="0.508,0.142" TextChanged="datasearch_TextChanged" HorizontalAlignment="Right" Width="175"/>
+                <ComboBox x:Name="xsearch" materialDesign:HintAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="0,93,478,0" Height="41" RenderTransformOrigin="0.5,0.533" VerticalAlignment="Top" HorizontalAlignment="Right" Width="168">
+                    <ComboBoxItem IsSelected="True">
+                        nom produit
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        id produit
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        type
+                    </ComboBoxItem>
+                </ComboBox>
+                <Border Margin="134,12,0,426" Grid.Column="0" Background="#FF3689E5"  Width="170" Height="68" HorizontalAlignment="Left"   >
+                    <Grid Margin="0,10" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="numberachat" Margin="10,0,0,5" FontSize="30" Foreground="White" Text="--" Opacity="0.51" Height="43" VerticalAlignment="Bottom"/>
+                        <materialDesign:PackIcon  Kind="CartAdd" Width="70" Height="48" Margin="90,0,0,0" Foreground="White" RenderTransformOrigin="0.698,0.615"  Opacity="0.7" VerticalAlignment="Bottom"/>
+                    </Grid>
+                </Border>
+                <Border Margin="314,12,0,426" Grid.Column="0" Background="#FFEA5118" Width="170" Height="68" HorizontalAlignment="Left"  >
+                    <Grid Margin="0,10" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="27*"/>
+                            <ColumnDefinition Width="143*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="qty_ah" Margin="10,0,0,5" FontSize="30" Foreground="White" Text="--" Opacity="0.51" Height="43" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+                        <materialDesign:PackIcon  Kind="ChartAreaspline"  Margin="63,0,0,0" Foreground="White"  Width="70" Height="48" Opacity="0.7" VerticalAlignment="Stretch" Grid.Column="1"/>
+                    </Grid>
+                </Border>
+                <Border Margin="494,12,0,426" Grid.Column="0" Background="#FF24CBC3" Width="170" Height="68" HorizontalAlignment="Left"  >
+                    <Grid Margin="0,10" >
+                        <TextBlock x:Name="prosontage" Margin="10,0,0,5" FontSize="30" Foreground="White" Text="--" Opacity="0.51" Height="43" VerticalAlignment="Bottom"/>
+                        <materialDesign:PackIcon  Kind="Sale" Margin="100,0,0,0" Foreground="White" RenderTransformOrigin="0.698,0.615" Width="70" Height="48" Opacity="0.7"/>
+                    </Grid>
+                </Border>
+                <DataGrid x:Name="dataprod" AutoGenerateColumns="False"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Loaded="dataprod_Loaded" Margin="4,157,-2,-2" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="dataprod_MouseDoubleClick" SelectionChanged="dataprod_SelectionChanged" Foreground="#FF010103">
+                    <DataGrid.Background>
+                        <ImageBrush/>
+                    </DataGrid.Background>
+                    <DataGrid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="-0.189"/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="-1.06"/>
+                        </TransformGroup>
+                    </DataGrid.RenderTransform>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="id"  Width="50" Binding="{Binding id_produit, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="nom" Width="90" Binding="{Binding nom_produit, Mode=OneWay}"/>
+                        <DataGridTextColumn  Header="type" Width="100" Binding="{Binding type_produit, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="prix vente" Width="100" Binding="{Binding prix_vent, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="prix achat" Width="100" Binding="{Binding prix_unitare_prod, Mode=OneWay}"/>
+                        <DataGridTextColumn  Header="code_bare" Width="102" Binding="{Binding code_bare, Mode=OneWay}"/>
+                        <DataGridTemplateColumn Header="printe">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="btnView"  Width="64" Height="20" FontSize="8" Click="printer_Click" >
+                                        <Button.BorderBrush>
+                                            <ImageBrush/>
+                                        </Button.BorderBrush>
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="/appswindows;component/Img/printing.png" Stretch="Uniform"/>
+                                        </Button.Background>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="508" Margin="10,7,0,0" VerticalAlignment="Top" Width="386" Background="White" Loaded="Border_Loaded_1" Grid.RowSpan="5" Grid.Column="6">
+            <Border.BorderBrush>
+                <ImageBrush/>
+            </Border.BorderBrush>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="62*"/>
+                    <RowDefinition Height="191*"/>
+                </Grid.RowDefinitions>
+                <Image x:Name="barcodeim" HorizontalAlignment="Left" Height="100" Margin="65,10,0,0" VerticalAlignment="Top" Width="236" Stretch="None"/>
+                <materialDesign:PackIcon Kind="IdCard" Width="25" Height="29" Margin="65,120,0,0" RenderTransformOrigin="0.492,2.216" Opacity="0.48" Grid.RowSpan="2"/>
+                <TextBox IsEnabled="False" x:Name="id" materialDesign:HintAssist.Hint="id" Margin="95,119,174,357" Grid.RowSpan="2"/>
+                <TextBox x:Name="nime"  materialDesign:HintAssist.Hint="nom"   Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="95,25.022,174,310" RenderTransformOrigin="0.187,0.006" Grid.Row="1" />
+                <materialDesign:PackIcon x:Name="usericon" Kind="AddShoppingCart"  Width="25" Height="30" Margin="65,42.022,0,0" RenderTransformOrigin="0.492,2.216" Opacity="0.48" Grid.Row="1"/>
+                <materialDesign:PackIcon x:Name="adressicon" Kind="Money"  Width="Auto" Height="28" Margin="61,91.022,295,0" RenderTransformOrigin="0.342,2.474" Opacity="0.625" HorizontalAlignment="Stretch" Grid.Row="1">
+                    <materialDesign:PackIcon.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0.679"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </materialDesign:PackIcon.RenderTransform>
+                </materialDesign:PackIcon>
+                <TextBox x:Name="prixuni"  materialDesign:HintAssist.Hint="prix unitaire"   Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="95,72.022,175,263" RenderTransformOrigin="0.187,0.006" Grid.Row="1" />
+                <TextBlock HorizontalAlignment="Left" Margin="209,93.022,0,0" TextWrapping="Wrap" Text="Dz" VerticalAlignment="Top" Width="28" Height="26" TextAlignment="Center" FontSize="16" Opacity="0.65" Grid.Row="1"/>
+                <TextBox x:Name="prixve"  materialDesign:HintAssist.Hint="prix vente"   Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="242,72.022,32,263" RenderTransformOrigin="0.187,0.006" Grid.Row="1" />
+                <TextBlock HorizontalAlignment="Left" Margin="352,93.022,0,0" TextWrapping="Wrap" Text="Dz" VerticalAlignment="Top" Width="28" Height="26" TextAlignment="Center" FontSize="16" Opacity="0.65" Grid.Row="1"/>
+                <TextBlock x:Name="error1" HorizontalAlignment="Left" Margin="95,119.022,0,0" TextWrapping="Wrap" Text="utiliser les nimiro ?" VerticalAlignment="Top" Width="108" Foreground="#FFFF0B0B" Visibility="Hidden" Grid.Row="1"/>
+                <TextBlock x:Name="error2" HorizontalAlignment="Left" Margin="242,119.022,0,0" TextWrapping="Wrap" Text="utiliser les nimiro ?" VerticalAlignment="Top" Width="110" Foreground="Red" Visibility="Hidden" Grid.Row="1"/>
+                <ComboBox x:Name="catigo" materialDesign:HintAssist.Hint="catigorie" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="95,135.022,181,206" Height="41" Grid.Row="1" >
+                    <ComboBoxItem>l'eau</ComboBoxItem>
+                    <ComboBoxItem>Pâtes</ComboBoxItem>
+                    <ComboBoxItem>Bonbons</ComboBoxItem>
+                    <ComboBoxItem>Fromage</ComboBoxItem>
+                    <ComboBoxItem>gâteaux</ComboBoxItem>
+                    <ComboBoxItem>Des boissons gazeuses</ComboBoxItem>
+                    <ComboBoxItem>jus</ComboBoxItem>
+                </ComboBox>
+                <materialDesign:PackIcon x:Name="phoneicon" Kind="PlaylistMinus"  Width="25" Height="29" Margin="65,147.022,0,0" RenderTransformOrigin="0.342,2.474" Opacity="0.63" Grid.Row="1"/>
+                <materialDesign:PackIcon x:Name="noteicon_Copy1" Kind="Barcode"  Width="25" Height="28" Margin="65,195.022,0,0" RenderTransformOrigin="0.342,2.474" Opacity="0.63" Grid.Row="1"/>
+                <TextBox x:Name="barcod" IsEnabled="False"  materialDesign:HintAssist.Hint="bar code"   Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="95,176.022,181,159" RenderTransformOrigin="0.187,0.006" Grid.Row="1" />
+                <CheckBox x:Name="check1" Content="produire" HorizontalAlignment="Left" Margin="90,228.022,0,0" VerticalAlignment="Top" Width="100" Checked="check1_Checked" Unchecked="check1_Unchecked" Grid.Row="1"/>
+                <CheckBox x:Name="check2"  Content="secanner" HorizontalAlignment="Left" Margin="90,246.022,0,0" VerticalAlignment="Top" Width="100" Checked="check2_Checked" Unchecked="check2_Unchecked_1" Grid.Row="1"/>
+                <Button x:Name="produire" Visibility="Hidden" Content="produire" Margin="291,195.022,4,0" Click="ajouter_Click" VerticalAlignment="Top" Background="White" Foreground="Black" BorderBrush="#FF111111" Grid.Row="1"/>
+                <Button x:Name="scannere" Content="scanner" Margin="0,195.022,4,0" Click="scanner" VerticalAlignment="Top" Background="White" Foreground="Black" BorderBrush="#FF111111" HorizontalAlignment="Right" Width="89" Visibility="Hidden" Grid.Row="1"/>
+                <ComboBox x:Name="came" IsEditable="True" Height="29" Margin="210,195.022,98,158" Grid.Row="1" Visibility="Hidden"/>
+                <Button x:Name="ajouter" Content="Ajouter" Margin="284,340.022,10,0" VerticalAlignment="Top" Click="ajouter_Click_1" Grid.Row="1"/>
+                <Button x:Name="modifier" Content="Edite" Margin="284,340.022,0,10" Background="#FF43A047" Visibility="Hidden" Grid.Row="1" />
+                <StackPanel Margin="65,269.022,115,52" Grid.Row="1"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

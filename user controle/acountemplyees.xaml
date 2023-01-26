@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="appswindows.user_controle.about"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:appswindows.user_controle"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="800" Background="White">
+            <TextBlock HorizontalAlignment="Left" Margin="322,152,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="127" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" FontSize="22" Opacity="0.7">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-0.147"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="319,176,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="127" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" FontSize="14" Opacity="0.7">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-0.147"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+        </Grid>
+        <Border CornerRadius="80"  Margin="304,0,330,301">
+            <Border.Background>
+                <ImageBrush x:Name="emplyeess" ImageSource="/appswindows;component/Img/profile.png" Stretch="UniformToFill" />
+            </Border.Background>
+        </Border>
+        <Button x:Name="addimge" Content="delete" Margin="424,117,342,301" RenderTransformOrigin="0.368,-0.031">
+            <Button.Foreground>
+                <ImageBrush/>
+            </Button.Foreground>
+            <Button.BorderBrush>
+                <ImageBrush/>
+            </Button.BorderBrush>
+            <Button.Background>
+                <ImageBrush ImageSource="/appswindows;component/Img/plus.png"/>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="usernime"  materialDesign:HintAssist.Hint="Nom d'utilisateur"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="196,189,426,219" />
+        <PasswordBox x:Name="password" materialDesign:HintAssist.Hint="******"  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="492,189,175,219"/>
+        <ComboBox x:Name="catigo" materialDesign:HintAssist.Hint="type" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="196,236,447,175" Height="39">
+            <ComboBoxItem>À plein temps</ComboBoxItem>
+            <ComboBoxItem>À temps partiel</ComboBoxItem>
+            <ComboBoxItem>Décontractée</ComboBoxItem>
+            <ComboBoxItem>Durée déterminée</ComboBoxItem>
+            <ComboBoxItem>Les travailleurs de quarts</ComboBoxItem>
+            <ComboBoxItem>location à la journée</ComboBoxItem>
+            <ComboBoxItem>Probation</ComboBoxItem>
+            <ComboBoxItem>Apprentis et stagiaires</ComboBoxItem>
+        </ComboBox>
+        <TextBox x:Name="nime"  materialDesign:HintAssist.Hint="nom"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="196,280,447,127" />
+        <TextBox x:Name="second"  materialDesign:HintAssist.Hint="prenom"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="196,328,400,80" />
+        <TextBox x:Name="telephone"  materialDesign:HintAssist.Hint="telephone"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="492,240,146,167" />
+        <Button x:Name="engesterer" Content="Enregestrer" Margin="612,408,73,10"></Button>
+    </Grid>
+</UserControl>
